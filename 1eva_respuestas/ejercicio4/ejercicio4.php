@@ -1,8 +1,8 @@
 <?php 
 
 class Padre{
-    public $propiedad = "propiedad";
-    public $value = "valor";
+    protected $propiedad = "propiedad";
+    protected $value = "valor";
     public function __get($property){
  return $property;
  
