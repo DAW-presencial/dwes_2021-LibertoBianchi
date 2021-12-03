@@ -15,7 +15,7 @@ Ejemplo por desarrollar
 
           public function __set($property, $value) {
               $this->{$property}=$value;
-              return $this->{property};
+              return $this->{$property};
 //            if (property_exists($this, $property)) {
 //              echo "la propiedad $property existe";
 //            } else {
@@ -43,7 +43,7 @@ Ejemplo por desarrollar
         $objeto2= new persona;
         var_dump($objeto1);
         var_dump($objeto2);
-        var_
+        
         ?>
     </body>
 </html>
