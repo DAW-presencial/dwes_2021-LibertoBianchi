@@ -7,30 +7,15 @@ if (isset($_GET["submit"])) {
     echo "Name = ".  $name . "<br>";
     echo "Surname = ". $surname."<br>";
     echo "Birth Date = ". $birthDate."<br> <br>";
-    echo "Archivo1 = " . $_GET["archivo1"]."<br>"."Tamaño = ". filesize($_GET["archivo1"])."<br>";
-    echo "Archivo2 = " . $_GET["archivo2"]."<br>"."Tamaño = ". filesize($_GET["archivo2"])."<br>";
+    echo "Nombre Archivo1 = " . $_GET["archivo1"]."<br>"."Tamaño = ". filesize($_GET["archivo1"])."<br>";
+    echo "Nombre Archivo2 = " . $_GET["archivo2"]."<br>"."Tamaño = ". filesize($_GET["archivo2"])."<br>";
 
 
     }
     foreach ($_FILES as $file) {
         
-        if ($file['error'] == 0) {
-            if (!move_uploaded_file($file['tmp_name'], 'archivos/' . $file['name'])) {
-                echo "Falló";
-            }
-        } else {
-            switch ($file['error']) {
-                case 1: break;
-                case 2: break;
-                case 4: echo "No se ha subido archivo en el selector " . $file;
-                    break;
-                case 6: break;
-                case 7: break;
-                case 8: break;
-                default :break;
-            }
-            echo "Hubo un error de código " . $file['error'] . " al subir el fichero";
-        }
+        move_uploaded_file($file['tmp_name'], 'archivos/' . $file['name']) ;
+          
     }
 
 
