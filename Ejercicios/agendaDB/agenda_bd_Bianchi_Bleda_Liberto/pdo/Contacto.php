@@ -1,4 +1,10 @@
+
 <?php 
+/*
+En esta clase se crean los metodos correspondientes al CRUD
+con las funciones create() read() update() delete()
+
+*/
 include "Conexion.php";
 class Contacto extends Conexion{
     public $nombre;

@@ -36,6 +36,10 @@ $contactos->read();
 
 
 <?php
+/*
+Esta es la logica de la aplicación usando los metodos de Contacto.php
+
+*/
 if (isset($_POST["submit"])) {
 
     $nuevoNombre = trim($_POST['nombre']);
