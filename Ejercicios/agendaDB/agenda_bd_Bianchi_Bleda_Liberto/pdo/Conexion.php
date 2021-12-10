@@ -7,15 +7,24 @@
 class Conexion{
    public $conexion;
 function conectar(){
+    
     try{
-    $conexion = new PDO("mysql:host=".DB_HOST.";dbname=".DB_NAME,DB_USER, DB_PASS,
+        
+    $this->conexion = new PDO("mysql:host=".DB_HOST.";dbname=".DB_NAME,DB_USER, DB_PASS,
     array(PDO::MYSQL_ATTR_INIT_COMMAND => "SET NAMES 'utf8'"));
-echo "va bn";
-  
+
+    $this->conexion->query("CREATE DATABASE IF NOT EXISTS agenda_db");
+    $this->conexion->query("USE agenda_db");
+    $this->conexion->query("CREATE TABLE IF NOT EXISTS contactos( nombre varchar(20), numero varchar(9))");
+
+  return $this->conexion;
     
 } catch (PDOException $e){
     exit("Error: " . $e->getMessage());
 }
+
+
+
 }
 
 }

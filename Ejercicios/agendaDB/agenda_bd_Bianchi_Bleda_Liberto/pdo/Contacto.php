@@ -1,56 +1,69 @@
 <?php 
-include_once "Conexion.php";
+include "Conexion.php";
 class Contacto extends Conexion{
     public $nombre;
     public $numero;
     
 public function create(){
     $this->conectar();
+    $nuevoNombre = trim($_POST['nombre']);
+    $nuevoNumero = trim($_POST['numero']);
 
  $sql = $this->conexion->prepare("insert into contactos(nombre,numero) values(:nombre,:numero)");
- $sql->bindParam(':nombre',$nombre,PDO::PARAM_STR, 20);
- $sql->bindParam(':numero',$numero,PDO::PARAM_STR, 20);
+ $sql->bindParam(':nombre',$nuevoNombre,PDO::PARAM_STR, 20);
+ $sql->bindParam(':numero',$nuevoNumero,PDO::PARAM_STR, 20);
  $sql->execute();
 }
-/*
-public static function read(){
-    $conexion = new Conexion();
-    $conexion->conectar();
-    $pre = mysqli_prepare($conexion->conexion, "SELECT * FROM contactos");
-    $pre->execute();
-    $res = $pre->get_result();
-    $contactos = [];
-    while($contacto = $res->fetch_object(Contacto::class))
-    array_push($contactos,$contacto);
 
-    return $contactos;
+public function read(){
+    
+    $this->conectar();
+
+    $query = $this->conexion->prepare("SELECT * FROM contactos");
+    $query->execute();
+    $contactos = $query -> fetchAll(PDO::FETCH_OBJ); 
+$i = 1;
+    if($query->rowCount()>0){
+        foreach($contactos as $contacto){
+            echo "Contacto ".$i."<br>";
+            echo "Nombre = " .$contacto->nombre."<br>";
+            echo "Numero = " .$contacto->numero."<br><br>";
+            $i++;
+        }
+    }
 }
 
 public function update(){
+    $nuevoNombre = trim($_POST['nombre']);
+    $nuevoNumero = trim($_POST['numero']);
     $this->conectar();
-    $pre = mysqli_prepare($this->conexion, "UPDATE contactos SET numero = ? WHERE nombre = ?");
-    $pre->bind_param("ss",$this->numero,$this->nombre);
-    $pre->execute();
+    $query = $this->conexion->prepare("UPDATE contactos SET `numero`= :numero WHERE `nombre` = :nombre");
+    $query->bindParam(':nombre',$nuevoNombre,PDO::PARAM_STR, 20);
+    $query->bindParam(':numero',$nuevoNumero,PDO::PARAM_STR, 20);
+    $query->execute();
+
+if($query->rowCount()>0){
+echo $nuevoNombre." Ha sido actualizado";
 }
+else{
+    $this->create();
+}
+  
+    }
+
+
 
 public function delete(){
+    $nuevoNombre = trim($_POST['nombre']);
     $this->conectar();
-    $pre = mysqli_prepare($this->conexion, "DELETE FROM contactos WHERE nombre = ?");
-    $pre->bind_param("s",$this->nombre);
-    $pre->execute();
+    $consulta = "DELETE FROM `contactos` WHERE `nombre`=:nombre";
+$sql =$this->conexion->prepare($consulta);
+$sql -> bindParam(':nombre', $nuevoNombre, PDO::PARAM_STR, 20);
+
+
+$sql->execute();
 }
 
-public static function getByName($nombre){
-    $conexion = new Conexion();
-    $conexion->conectar();
-    $pre = mysqli_prepare($conexion->conexion,"SELECT * FROM contactos WHERE nombre = ?");
-    $pre->bind_param("s",$nombre);
-    $pre->execute();
-    $res = $pre->get_result();
-
-    return $res->fetch_object(Contacto::class);
-}
-*/
 }
 
 
