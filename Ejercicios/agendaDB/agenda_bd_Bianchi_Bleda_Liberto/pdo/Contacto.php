@@ -7,8 +7,7 @@ con las funciones create() read() update() delete()
 */
 include "Conexion.php";
 class Contacto extends Conexion{
-    public $nombre;
-    public $numero;
+    
     
 public function create(){
     $this->conectar();
@@ -19,6 +18,7 @@ public function create(){
  $sql->bindParam(':nombre',$nuevoNombre);
  $sql->bindParam(':numero',$nuevoNumero,PDO::PARAM_STR, 9);
  $sql->execute();
+ echo $nuevoNombre." Ha sido creado";
 }
 
 public function read(){
@@ -40,16 +40,16 @@ $i = 1;
 }
 
 public function update(){
-    $nuevoNombre = trim($_POST['nombre']);
+    $nombreInsertado = trim($_POST['nombre']);
     $nuevoNumero = trim($_POST['numero']);
     $this->conectar();
     $query = $this->conexion->prepare("UPDATE contactos SET numero= :numero WHERE nombre = :nombre ;");
-    $query->bindParam(':nombre',$nuevoNombre);
+    $query->bindParam(':nombre',$nombreInsertado);
     $query->bindParam(':numero',$nuevoNumero,PDO::PARAM_STR, 9);
     $query->execute();
 
 if($query->rowCount()>0){
-echo $nuevoNombre." Ha sido actualizado";
+echo $nombreInsertado." Ha sido actualizado";
 }
 else{
     $this->create();
@@ -60,15 +60,15 @@ else{
 
 
 public function delete(){
-    $nuevoNombre = trim($_POST['nombre']);
+    $nombreEliminar = trim($_POST['nombre']);
     $this->conectar();
     $consulta = "DELETE FROM contactos WHERE nombre= :nombre ;";
 $sql =$this->conexion->prepare($consulta);
-$sql->bindParam(':nombre',$nuevoNombre,PDO::PARAM_STR, 20);
+$sql->bindParam(':nombre',$nombreEliminar,PDO::PARAM_STR, 20);
 
 
 $sql->execute();
-echo "<script>console.log('Debug Objects: " . $nuevoNombre . "' );</script>";
+
 }
 
 }
