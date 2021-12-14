@@ -60,9 +60,9 @@ else{
 
 
 public function delete(){
-    $nuevoNombre = $_POST['nombre'];
+    $nuevoNombre = trim($_POST['nombre']);
     $this->conectar();
-    $consulta = "DELETE FROM 'contactos' WHERE 'nombre'= :nombre ";
+    $consulta = "DELETE FROM contactos WHERE nombre= :nombre ;";
 $sql =$this->conexion->prepare($consulta);
 $sql->bindParam(':nombre',$nuevoNombre,PDO::PARAM_STR, 20);
 
