@@ -60,7 +60,7 @@ else{
 
 
 public function delete(){
-    $nuevoNombre = trim($_POST['nombre']);
+    $nuevoNombre = $_POST['nombre'];
     $this->conectar();
     $consulta = "DELETE FROM 'contactos' WHERE 'nombre'= :nombre ";
 $sql =$this->conexion->prepare($consulta);
