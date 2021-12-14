@@ -19,9 +19,7 @@ function conectar(){
         
     $this->conexion = new PDO("pgsql:host=".DB_HOST.";dbname=".DB_NAME,DB_USER, DB_PASS);
 
-    $this->conexion->query("CREATE DATABASE IF NOT EXISTS agenda_db");
-    $this->conexion->query("USE agenda_db");
-    $this->conexion->query("CREATE TABLE IF NOT EXISTS contactos( nombre varchar(20), numero varchar(9))");
+    
 
   return $this->conexion;
     
