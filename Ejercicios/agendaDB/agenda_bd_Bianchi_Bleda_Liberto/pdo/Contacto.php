@@ -43,7 +43,7 @@ public function update(){
     $nuevoNombre = trim($_POST['nombre']);
     $nuevoNumero = trim($_POST['numero']);
     $this->conectar();
-    $query = $this->conexion->prepare("UPDATE contactos SET `numero`= :numero WHERE `nombre` = :nombre");
+    $query = $this->conexion->prepare("UPDATE contactos SET numero= :numero WHERE nombre = :nombre ;");
     $query->bindParam(':nombre',$nuevoNombre);
     $query->bindParam(':numero',$nuevoNumero,PDO::PARAM_STR, 9);
     $query->execute();
