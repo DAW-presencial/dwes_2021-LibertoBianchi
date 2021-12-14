@@ -1,7 +1,7 @@
 <?php 
  define('DB_HOST','localhost');
  define('DB_USER','lbianchi');
- define('DB_PASS','');
+ define('DB_PASS','abc123.');
  define('DB_NAME','agenda_lbianchi');
 
 class Conexion{
