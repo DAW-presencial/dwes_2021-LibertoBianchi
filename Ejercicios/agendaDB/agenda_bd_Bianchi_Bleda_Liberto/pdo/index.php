@@ -16,7 +16,7 @@
             <label for="numero">Numero de telefono:</label><br>
             <input type="number" id="numero" name="numero">
             <input type="submit" name="submit" /><br>
-            <input type="button" onclick="window.open(showContacts.php)" value="Ver lista de contactos">
+            <input type="button" onclick="window.open('showContacts.php')" value="Ver lista de contactos">
 
         </form>
     </div>
