@@ -47,7 +47,7 @@ public function update(){
     $query->bindParam(':nombre',$nombreInsertado);
     $query->bindParam(':numero',$nuevoNumero,PDO::PARAM_STR, 9);
     $query->execute();
-
+//siempre será llamado update, y si no encuentra un registro con el mismo nombre crea uno con create()
 if($query->rowCount()>0){
 echo $nombreInsertado." Ha sido actualizado";
 }
@@ -68,7 +68,7 @@ $sql->bindParam(':nombre',$nombreEliminar,PDO::PARAM_STR, 20);
 
 
 $sql->execute();
-
+echo $nombreEliminar." Ha sido eliminado";
 }
 
 }
