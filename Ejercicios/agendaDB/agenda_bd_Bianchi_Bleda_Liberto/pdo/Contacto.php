@@ -67,7 +67,7 @@ $sql =$this->conexion->prepare($consulta);
 $sql->bindParam(':nombre',$nuevoNombre,PDO::PARAM_STR, 20);
 
 
-$sql->execute([$nuevoNombre]);
+$sql->execute();
 echo "<script>console.log('Debug Objects: " . $nuevoNombre . "' );</script>";
 }
 
