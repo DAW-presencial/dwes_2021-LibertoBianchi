@@ -51,13 +51,13 @@ if (isset($_POST["submit"])) {
         if ($nuevoNumero == "") {
             $contacto = new Contacto();
             $contacto->delete();
-            header("Refresh:0");
+            //header("Refresh:0");
         } else {
             $nuevoContacto = new Contacto();
             $nuevoContacto->nombre = $nuevoNombre;
             $nuevoContacto->numero = $nuevoNumero;
             $nuevoContacto->update();
-            header("Refresh:0");
+            //header("Refresh:0");
         }
     }
 };
