@@ -16,8 +16,8 @@ public function create(){
     $nuevoNumero = trim($_POST['numero']);
 
  $sql = $this->conexion->prepare("insert into contactos(nombre,numero) values(:nombre,:numero)");
- $sql->bindParam(':nombre',$nuevoNombre,PDO::PARAM_STR, 20);
- $sql->bindParam(':numero',$nuevoNumero,PDO::PARAM_STR, 20);
+ $sql->bindParam(':nombre',$nuevoNombre);
+ $sql->bindParam(':numero',$nuevoNumero,PDO::PARAM_STR, 9);
  $sql->execute();
 }
 
@@ -44,8 +44,8 @@ public function update(){
     $nuevoNumero = trim($_POST['numero']);
     $this->conectar();
     $query = $this->conexion->prepare("UPDATE contactos SET `numero`= :numero WHERE `nombre` = :nombre");
-    $query->bindParam(':nombre',$nuevoNombre,PDO::PARAM_STR, 20);
-    $query->bindParam(':numero',$nuevoNumero,PDO::PARAM_STR, 20);
+    $query->bindParam(':nombre',$nuevoNombre);
+    $query->bindParam(':numero',$nuevoNumero,PDO::PARAM_STR, 9);
     $query->execute();
 
 if($query->rowCount()>0){
