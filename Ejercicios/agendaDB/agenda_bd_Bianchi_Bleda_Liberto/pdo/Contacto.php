@@ -64,7 +64,7 @@ public function delete(){
     $this->conectar();
     $consulta = "DELETE FROM `contactos` WHERE `nombre`= ? ";
 $sql =$this->conexion->prepare($consulta);
-$sql -> bindParam(':nombre', $nuevoNombre, PDO::PARAM_STR, 20);
+
 
 
 $sql->execute([$nuevoNombre]);
