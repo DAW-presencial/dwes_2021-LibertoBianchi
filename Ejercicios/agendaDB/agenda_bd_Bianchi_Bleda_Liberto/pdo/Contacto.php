@@ -62,12 +62,13 @@ else{
 public function delete(){
     $nuevoNombre = trim($_POST['nombre']);
     $this->conectar();
-    $consulta = "DELETE FROM `contactos` WHERE `nombre`= ? ";
+    $consulta = "DELETE FROM `contactos` WHERE `nombre`= ?;";
 $sql =$this->conexion->prepare($consulta);
-
+$sql -> bindParam(':nombre', $nuevoNombre, PDO::PARAM_STR, 20);
 
 
 $sql->execute([$nuevoNombre]);
+echo "<script>console.log('Debug Objects: " . $nuevoNombre . "' );</script>";
 }
 
 }
