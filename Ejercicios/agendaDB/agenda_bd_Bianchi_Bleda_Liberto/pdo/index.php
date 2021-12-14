@@ -15,7 +15,8 @@
             <input type="text" id="nombre" name="nombre"><br>
             <label for="numero">Numero de telefono:</label><br>
             <input type="number" id="numero" name="numero">
-            <input type="submit" name="submit" />
+            <input type="submit" name="submit" /><br>
+            <input type="button" onclick="window.open(showContacts.php)" value="Ver lista de contactos">
 
         </form>
     </div>
@@ -29,8 +30,7 @@
 <?php
 
 include("Contacto.php");
-$contactos = new Contacto;
-$contactos->read();
+
 
 ?>
 
@@ -51,13 +51,13 @@ if (isset($_POST["submit"])) {
         if ($nuevoNumero == "") {
             $contacto = new Contacto();
             $contacto->delete();
-            //header("Refresh:0");
+            header("Refresh:0");
         } else {
             $nuevoContacto = new Contacto();
             $nuevoContacto->nombre = $nuevoNombre;
             $nuevoContacto->numero = $nuevoNumero;
             $nuevoContacto->update();
-            //header("Refresh:0");
+            header("Refresh:0");
         }
     }
 };
